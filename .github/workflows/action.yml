@@ -1,0 +1,24 @@
+name: "Archivist Bot"
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run bot
+        run: python archivistbot.py
+        env:
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
