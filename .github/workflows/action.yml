@@ -19,7 +19,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Run bot
-        run: python archivistbot.py
+        run: python archivist_bot.py
         env:
           BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           SPREADSHEET_ID: ${{ secrets.GOOGLE_SPREADSHEET_ID }}
